@@ -1,36 +1,27 @@
 {% extends "bootstrap/base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
 {% block title %}
 Home
 {% endblock %}
-
 {% block styles %}
 {{super()}}
     <link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
 {% endblock %}
 {% block content %}
-
 <body>
-    <div class="container">
-        <nav class="navbar navbar-dark bg-dark" style="background-color: black;width: 100%;">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#" style="color:white">Todo List</a>
-          </div>
-        </nav>
-      </div>
+    
     <h1 style="display:flex;justify-content:center"> Hello {{name}}</h1>    
     <form action="/add" method="POST" style="display: flex;flex-direction:row;justify-content:center">
         <input style="width:30%" type="text" class="form-control" name="todoitem" placeholder="Add a new todo item: ">
         <input type="date" name="dueDate">
         <input type="submit" value="Add Item">
     </form>
-        
     
     <div style="display: flex;flex-direction:row;justify-content:space-around">
         <h2>Incomplete Items</h2>
         <h2>Complete Items</h2>
     </div>
+    <!-- Order Lists -->
     <div style="display: flex;flex-direction:row;justify-content:center">
         <form action="/desc" method="POST">
             <input class="btn btn-primary" type="submit" value="Descending">
@@ -39,10 +30,10 @@ Home
             <input class="btn btn-primary" type="submit" value="Ascending">
         </form>
     </div>
+
     <div>
-       
-        
         <div style="display: flex;flex-direction:row;justify-content:space-around">
+            <!-- Complete List -->
             <ul>
                 {% for todo in incomplete %}
                     <li>
@@ -62,7 +53,6 @@ Home
                             </div>
                         </div>
                     </li>
-                    
                     <!-- Modal -->
                     <div class="modal fade" id="{{todo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -88,10 +78,10 @@ Home
                     </div>
                 {% endfor %}    
             </ul>
+            <!-- Incomplete List -->
             <ul>
                 {% for todo in complete %}
                     <li>
-                        
                         <p>{{todo.text}}</p>
                         <p>{{todo.dueDate}}</p>
                     </li>
@@ -103,7 +93,6 @@ Home
                             <input class="btn btn-primary" type="submit" value="Delete">
                         </form>
                     </div>
-                    
                     <!-- Modal -->
                     <div class="modal fade" id="{{todo.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -129,9 +118,7 @@ Home
                     </div>
                 {% endfor %}
             </ul>
-
         </div>
- 
     </div>
 </body>
 {% endblock %}

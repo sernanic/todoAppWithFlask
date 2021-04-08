@@ -24,7 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/nicolasserna/Downloads
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG'] = True
 db.init_app(app)
-
+db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
