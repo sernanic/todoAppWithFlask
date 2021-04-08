@@ -20,6 +20,7 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 # Database
+# The SQLALCHEMY_DATABASE_URI must be changed based on where you wish to save the db
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/nicolasserna/Downloads/flask_project_default/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DEBUG'] = True
